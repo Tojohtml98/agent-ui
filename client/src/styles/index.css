@@ -250,12 +250,25 @@ body {
   place-items: center;
   font-size: 28px;
   margin-bottom: 6px;
-  box-shadow:
-    0 0 0 1px rgba(124,106,255,0.3),
-    0 0 32px rgba(124,106,255,0.25),
-    0 8px 24px rgba(0,0,0,0.4);
   position: relative;
   z-index: 1;
+  animation: icon-breathe 4s ease-in-out infinite;
+}
+@keyframes icon-breathe {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(124,106,255,0.3),
+      0 0 28px rgba(124,106,255,0.22),
+      0 8px 24px rgba(0,0,0,0.4);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(124,106,255,0.4),
+      0 0 44px rgba(124,106,255,0.38),
+      0 8px 24px rgba(0,0,0,0.4);
+    transform: translateY(-3px);
+  }
 }
 .empty h1 {
   font-size: 24px;
@@ -398,6 +411,37 @@ body {
   animation: blink 1s steps(2) infinite;
 }
 @keyframes blink { 50% { opacity: 0; } }
+
+/* Entrada suave de cada mensaje */
+.msg {
+  animation: msg-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes msg-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Indicador "escribiendo…" (3 puntos) */
+.typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 0;
+}
+.typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.4;
+  animation: typing-bounce 1.2s infinite ease-in-out;
+}
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing-bounce {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30%           { opacity: 1;   transform: translateY(-4px); }
+}
 
 /* ===== Composer ===== */
 .composer-wrap {
