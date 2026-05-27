@@ -13,6 +13,6 @@ services:
       - key: GEMINI_API_KEY
         sync: false # se setea manualmente en el dashboard (secreto)
       - key: MONGODB_URI
-        sync: false # MongoDB Atlas free tier
+        sync: false # MongoDB Atlas free tier (secreto)
       - key: CLIENT_ORIGIN
-        sync: false # URL del frontend en Vercel
+        value: "*" # CORS abierto al inicio; se restringe a la URL de Vercel al final
