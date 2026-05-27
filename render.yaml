@@ -1,0 +1,18 @@
+# Render Blueprint — deploy del backend con un click.
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: agentui-server
+    runtime: node
+    rootDir: server
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false # se setea manualmente en el dashboard (secreto)
+      - key: MONGODB_URI
+        sync: false # MongoDB Atlas free tier
+      - key: CLIENT_ORIGIN
+        sync: false # URL del frontend en Vercel
